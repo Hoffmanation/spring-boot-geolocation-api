@@ -1,0 +1,89 @@
+
+				<section id="banner" style="background-size: 66% 119%;">
+					<div class="inner">
+						<header>
+							<h1>Geo Resolver</h1>
+							<p>A Geolocation resolver API service<br />
+							designed for <a href="https://gollgi.com/">Gollgi.com</a> and released in 2020 as an 
+							<a href="https://github.com/Hoffmanation/spring-boot-geolocation" >open source</a> project</p>
+						</header>
+						<a class="more" href="#box" (click)="scrollTo(scrolToFirstBox)">Learn More</a>
+					</div>
+				</section>
+
+
+				<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#70c7be" type = "ball-clip-rotate-multiple" 
+				><p style="color: white" > Resolving geolocation... </p></ngx-spinner>
+
+
+			<!-- Main -->
+				<div id="main">
+					<div class="inner">
+
+					<!-- Boxes -->
+						<div id="box" #scrolToFirstBox  class="thumbnails">
+
+							<div class="box">
+								<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img src="/assets/images/jakes-location-slider.jpg" alt="" /></a>
+								<div class="inner">
+									<h3>Test Geo Resolver API</h3>
+									<p>Search Address:</p>
+									<app-address-search  [whenInputEmpty]="emptyInput" id="addressSearch" type="address" (onChange)="onSuggestion($event)" (onClear)="onClear($event)"></app-address-search>
+									<pre class="geoUrl"> https://oren-hoffman.com/geo-resolver/secured/get-location?search={{endpointSearchAddress}}</pre>
+									
+									<br>
+
+									<a (click)="testResolver()"  class="button fit" >Test Geo Resolver</a>
+
+									<br>
+									
+									<h3 #scrolToSecondBox>Geo Resolver API Response:</h3>
+									<div>			
+										<a (click)="showTableResults()"  style="margin-right: 17%;" class="button" >Show Table Results</a>
+										<a (click)="showJsonResults()"  class="button" >Show JSON Results</a>
+									</div>
+									<br>
+									
+									<pre *ngIf="showJson" class="geoResultJson">{{locationResponse | json}}</pre>
+									<table *ngIf="showTable" style="background-color: #212429;">
+										<tr>
+											<th>Attribute</th>
+											<th>Value</th>
+										</tr>
+									
+										<tr *ngFor="let item of location">
+											<td>{{item.key}}</td>
+											<td>{{item.value}}</td>
+										</tr>
+									</table>
+
+								</div>
+							</div>
+							
+							
+							
+
+
+
+
+						</div>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<h2>Abount Geo Resolver</h2>
+						<p>This Geo Resolver test page was created with an angular 5 client.</p>
+						<p>Geo Resolver is a Spring-Boot rest API open source project for geolocation services that can be found in the link blow</p>
+
+						<ul class="icons">
+							<li><a href="https://github.com/Hoffmanation/spring-boot-geolocation" class="icon fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="http://oren-hoffman.com/" class="icon fa-user"><span class="label">Facebook</span></a></li>
+							<li><a href="mailto:orenhoffman1777@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">&copy; Oren Hoffman.</p>
+					</div>
+				</footer>
+
