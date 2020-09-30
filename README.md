@@ -18,7 +18,7 @@ On API's invocation Geo-Resolrcer engine will retrieve the richiest location res
 
 ## Git Branches
 - master - For Deploying a Spring-Boot application as a Tomcat war/ Embedded Tomcat jar  files
-- geo-location-wildfly - For deploying a Spring-Boot application as a Wildfly/Jboss (or any JEE application server) war file
+- geo-resolver-wildfly - For deploying a Spring-Boot application as a Wildfly/Jboss (or any JEE application server) war file
 
 
 # Module Major Dependencies
