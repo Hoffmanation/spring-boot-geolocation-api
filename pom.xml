@@ -3,18 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
-
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
 	<groupId>com.gollgi</groupId>
 	<artifactId>geo-resolver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>geo-resolver</name>
 	<description>Gollgi geo locarion REST resolver</description>
+	<packaging>war</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+		<relativePath />
+	</parent>
 
 	<properties>
 		<node.version>v12.14.1</node.version>
@@ -25,11 +26,23 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			 <version>1.4.177</version>
+			<version>1.4.177</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -68,12 +81,26 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -101,14 +128,14 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		
-				<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j -->
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j</artifactId>
 			<version>1.2.2.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -128,7 +155,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -136,31 +163,25 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>geo-resolver</finalName>
 	</build>
-	
-	  <profiles>
-	
-<!-- Mvn profiles for angular from end build : 
-	 1.'build-prod' profile for production build - This profile will : 
-	 	 a.install local node and npm engines in the angular-client folder
-	 	 b.invoke npm install
-	 	 c.invoke npm build for production as 'ng build -/-prod'
-	 	 d.install generated scrambled file to '../src/main/resources/static' 
-	 	 
-	 	 
-	 2.'build-dev' profile for development build - This profile will : 
-	 	 b.invoke npm install
-	 	 c.invoke npm build for development as 'ng build'
-	 	 d.install generated unscrambled file to '../src/main/resources/static' 
--->
+
+	<profiles>
+
+		<!-- Mvn profiles for angular from end build : 1.'build-prod' profile for 
+			production build - This profile will : a.install local node and npm engines 
+			in the angular-client folder b.invoke npm install c.invoke npm build for 
+			production as 'ng build -/-prod' d.install generated scrambled file to '../src/main/resources/static' 
+			2.'build-dev' profile for development build - This profile will : b.invoke 
+			npm install c.invoke npm build for development as 'ng build' d.install generated 
+			unscrambled file to '../src/main/resources/static' -->
 
 
-<!--Production Build -->
-<!-- <profile>
+		<!--Production Build -->
+		<profile>
 			<id>build-prod</id>
 			<activation>
-			
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<finalName>geo-resolver</finalName>
@@ -184,9 +205,7 @@
 							<installDirectory>angular-client</installDirectory>
 							<workingDirectory>angular-client</workingDirectory>
 						</configuration>
-
 						<executions>
-
 							<execution>
 								<id>install node and npm</id>
 								<goals>
@@ -197,7 +216,6 @@
 									<npmVersion>${npm.version}</npmVersion>
 								</configuration>
 							</execution>
-
 							<execution>
 								<id>install angular app</id>
 								<goals>
@@ -213,27 +231,25 @@
 									<goal>npm</goal>
 								</goals>
 								<configuration>
-									<arguments>run build</arguments>
+									<arguments>run build -- --deploy-url geo-resolver/</arguments>
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
 				</plugins>
 			</build>
-		</profile>-->
+		</profile>
 
 
 
 		<!-- Development Build -->
-		
-		<!-- <profile>
+		<profile>
 			<id>build-dev</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<finalName>geo-resolver</finalName>
-				<pluginManagement>
 					<plugins>
 						<plugin>
 							<artifactId>exec-maven-plugin</artifactId>
@@ -247,20 +263,20 @@
 										<goal>exec</goal>
 									</goals>
 									<configuration>
-										<executable>${basedir}/dev-build.bat</executable>
+										<executable>${basedir}\dev-build.bat</executable>
 										<arguments>
-											<argument>${basedir}/angular-client</argument>
+											<argument>${basedir}\angular-client</argument>
 										</arguments>
 									</configuration>
 								</execution>
 							</executions>
 						</plugin>
 					</plugins>
-				</pluginManagement>
 			</build>
-		</profile> -->
-		
-		
-	</profiles> 
+		</profile>
+
+
+	</profiles>
+
 
 </project>

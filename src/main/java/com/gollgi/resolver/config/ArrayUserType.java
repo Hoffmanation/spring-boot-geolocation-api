@@ -1,5 +1,7 @@
 package com.gollgi.resolver.config;
 
+
+
 import java.io.Serializable;
 import java.sql.Array;
 import java.sql.PreparedStatement;
@@ -8,16 +10,14 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * This custom class defining a postgreSQL array that can be persist by JPA.
- * For use in entity define @type(type = "com.crawler.app.ArrayUserType")
+ * This custom class defining a postgressSQL array that can be persist by JPA.
+ * For use in entity define @type(type = "name.of.package.ArrayUserType")
  * annotation above String[].
- * (An array support for hibernate-postgreSQL implementation )
- * @author Hoffman
  */
 @Configuration
 public class ArrayUserType implements UserType {
@@ -67,17 +67,16 @@ public class ArrayUserType implements UserType {
 	 *             exception SQL levées lors de la récupération des données.
 	 */
 	@Override
-	public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner)
+	public final Object nullSafeGet(final ResultSet resultSet, final String[] names, final SessionImplementor session, final Object owner)
 			throws HibernateException, SQLException {
-		if (rs.wasNull()) {
+		if (resultSet.wasNull()) {
 			return null;
 		}
 
-		String[] array = (String[]) rs.getArray(names[0]).getArray();
+		String[] array = (String[]) resultSet.getArray(names[0]).getArray();
 		return array;
 	}
 
-	
 	/**
 	 * Write an instance of the mapped class to a prepared statement. Implementors
 	 * should handle possibility of null values. A multi-column type should be
@@ -98,23 +97,18 @@ public class ArrayUserType implements UserType {
 	 *             exception SQL levées lors de la récupération des données.
 	 */
 	@Override
-	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
+	public final void nullSafeSet(final PreparedStatement statement, final Object value, final int index, final SessionImplementor session)
 			throws HibernateException, SQLException {
 
 		if (value == null) {
-			st.setNull(index, SQL_TYPES[0]);
+			statement.setNull(index, SQL_TYPES[0]);
 		} else {
 			String[] castObject = (String[]) value;
 			Array array = session.connection().createArrayOf("text", castObject);
-			st.setArray(index, array);
+			statement.setArray(index, array);
 		}
 	}
 
-
-
-
-
-	
 	@Override
 	public final Object deepCopy(final Object value) throws HibernateException {
 		return value;
@@ -157,5 +151,4 @@ public class ArrayUserType implements UserType {
 	public final Object replace(final Object original, final Object target, final Object owner) throws HibernateException {
 		return original;
 	}
-
 }

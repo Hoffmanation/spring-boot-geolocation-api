@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost',
-  port: '8080',
-  endpoints: { getLocation: '/secured/get-location'}
+  baseUrl: 'https://oren-hoffman.com',
+  port: '80',
+  endpoints: { getLocation: 'geo-resolver/secured/get-location'}
 };
