@@ -42,6 +42,7 @@ Demo can be fpund in this link https://oren-hoffman.com/geo-resolver/
  
 # Requirements
 - JVM
+- Full application build before running
 
 ## Build Application
 - development
