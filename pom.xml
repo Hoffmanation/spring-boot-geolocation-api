@@ -136,31 +136,29 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>geo-resolver</finalName>
 	</build>
-	
-	  <profiles>
-	
-<!-- Mvn profiles for angular from end build : 
-	 1.'build-prod' profile for production build - This profile will : 
-	 	 a.install local node and npm engines in the angular-client folder
-	 	 b.invoke npm install
-	 	 c.invoke npm build for production as 'ng build -/-prod'
-	 	 d.install generated scrambled file to '../src/main/resources/static' 
-	 	 
-	 	 
-	 2.'build-dev' profile for development build - This profile will : 
-	 	 b.invoke npm install
-	 	 c.invoke npm build for development as 'ng build'
-	 	 d.install generated unscrambled file to '../src/main/resources/static' 
--->
+
+	<profiles>
+
+		<!-- Mvn profiles for angular front end build : 
+				1.'build-prod' profile for production build - This profile will: 
+					a.install local node and npm engines in the angular-client folder 
+					b.invoke npm install 
+					c.invoke npm build for production as 'ng build -/-prod' 
+					d.install generated scrambled file to '../src/main/resources/static' 
+				2.'build-dev' profile for development build - This profile will: 
+					b.invoke npm install 
+					c.invoke npm build for development as 'ng build' 
+					d.install generated unscrambled file to '../src/main/resources/static' 
+		-->
 
 
-<!--Production Build -->
-<!-- <profile>
+		<!--Production Build -->
+		<profile>
 			<id>build-prod</id>
 			<activation>
-			
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<finalName>geo-resolver</finalName>
@@ -184,9 +182,7 @@
 							<installDirectory>angular-client</installDirectory>
 							<workingDirectory>angular-client</workingDirectory>
 						</configuration>
-
 						<executions>
-
 							<execution>
 								<id>install node and npm</id>
 								<goals>
@@ -197,7 +193,6 @@
 									<npmVersion>${npm.version}</npmVersion>
 								</configuration>
 							</execution>
-
 							<execution>
 								<id>install angular app</id>
 								<goals>
@@ -220,20 +215,18 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>-->
+		</profile>
 
 
 
 		<!-- Development Build -->
-		
-		<!-- <profile>
+		<profile>
 			<id>build-dev</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<finalName>geo-resolver</finalName>
-				<pluginManagement>
 					<plugins>
 						<plugin>
 							<artifactId>exec-maven-plugin</artifactId>
@@ -247,20 +240,20 @@
 										<goal>exec</goal>
 									</goals>
 									<configuration>
-										<executable>${basedir}/dev-build.bat</executable>
+										<executable>${basedir}\dev-build.bat</executable>
 										<arguments>
-											<argument>${basedir}/angular-client</argument>
+											<argument>${basedir}\angular-client</argument>
 										</arguments>
 									</configuration>
 								</execution>
 							</executions>
 						</plugin>
 					</plugins>
-				</pluginManagement>
 			</build>
-		</profile> -->
-		
-		
-	</profiles> 
+		</profile>
+
+
+	</profiles>
+
 
 </project>
