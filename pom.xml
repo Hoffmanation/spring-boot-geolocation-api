@@ -168,13 +168,17 @@
 
 	<profiles>
 
-		<!-- Mvn profiles for angular from end build : 1.'build-prod' profile for 
-			production build - This profile will : a.install local node and npm engines 
-			in the angular-client folder b.invoke npm install c.invoke npm build for 
-			production as 'ng build -/-prod' d.install generated scrambled file to '../src/main/resources/static' 
-			2.'build-dev' profile for development build - This profile will : b.invoke 
-			npm install c.invoke npm build for development as 'ng build' d.install generated 
-			unscrambled file to '../src/main/resources/static' -->
+		<!-- Mvn profiles for angular front end build : 
+				1.'build-prod' profile for production build - This profile will: 
+					a.install local node and npm engines in the angular-client folder 
+					b.invoke npm install 
+					c.invoke npm build for production as 'ng build -/-prod' 
+					d.install generated scrambled file to '../src/main/resources/static' 
+				2.'build-dev' profile for development build - This profile will: 
+					b.invoke npm install 
+					c.invoke npm build for development as 'ng build' 
+					d.install generated unscrambled file to '../src/main/resources/static' 
+		-->
 
 
 		<!--Production Build -->
