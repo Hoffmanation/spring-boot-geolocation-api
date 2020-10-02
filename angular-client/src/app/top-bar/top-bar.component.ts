@@ -3,6 +3,7 @@ import { ResolverService } from '../service/resolver-service.service';
 import { GeoLocation } from '../model/GeoLocation';
 import { AddressSearchComponent } from '../address-search/address-search.component';
 import { NgxSpinnerService } from "ngx-spinner";
+import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-top-bar',
@@ -23,7 +24,9 @@ export class TopBarComponent implements OnInit {
 	@ViewChild('scrolToFirstBox') scrolToFirstBox: ElementRef;
 	@ViewChild('scrolToSecondBox') scrolToSecondBox: ElementRef;
 
-	constructor(public resolverService: ResolverService, public addressBarComp: AddressSearchComponent, private spinner: NgxSpinnerService) { }
+	constructor(public resolverService: ResolverService, public addressBarComp: AddressSearchComponent, private spinner: NgxSpinnerService) {
+		console.log('%c Geo-Resolver Version:' + environment.version, 'color: #70c7be, font-size: 24px;');
+	 }
 
 	ngOnInit() {
 	}

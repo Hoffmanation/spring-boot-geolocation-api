@@ -2,5 +2,6 @@ export const environment = {
   production: true,
   baseUrl: 'https://oren-hoffman.com',
   port: '443',
-  endpoints: { getLocation: '/geo-resolver/secured/get-location'}
+  endpoints: { getLocation: '/geo-resolver/secured/get-location'},
+  version : 1.3
 };
