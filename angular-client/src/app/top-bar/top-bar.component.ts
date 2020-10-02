@@ -25,7 +25,7 @@ export class TopBarComponent implements OnInit {
 	@ViewChild('scrolToSecondBox') scrolToSecondBox: ElementRef;
 
 	constructor(public resolverService: ResolverService, public addressBarComp: AddressSearchComponent, private spinner: NgxSpinnerService) {
-		console.log('%c Geo-Resolver Version:' + environment.version, 'color: #70c7be, font-size: 24px;');
+		console.log('%c Geo-Resolver Version: ' + environment.version, 'color: #70c7be; font-size: 24px;');
 	 }
 
 	ngOnInit() {
