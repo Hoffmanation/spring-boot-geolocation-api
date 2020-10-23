@@ -1,7 +1,7 @@
 # Geo Resolver Application
 Java Spring-Boot 2 application for Geolocation API services, originally designed for Gollgi.com and released in 2020 as an open source project.  
 On API's invocation Geo-Resolver engine will retrieve the richest location results from a list of Geolocation providers.
-Demo can be fpund in this link https://oren-hoffman.com/geo-resolver/
+Demo can be found in this link https://oren-hoffman.com/geo-resolver/
 
 ## Geo Resolver API REST Endpoints
 - '/secured/get-location-by-resolver/{address}/{resolver}' 
