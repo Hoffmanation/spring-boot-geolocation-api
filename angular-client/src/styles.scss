@@ -5,6 +5,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Passion+One:400");
+@import "~@ng-select/ng-select/themes/material.theme.css";
 
 html,
 body,
@@ -1518,6 +1519,9 @@ body.is-loading #banner:before {
 
 }
 
+.ng-input {
+  margin-bottom: -20px !important;
+}
 
 #addressSearch {
 
@@ -1602,4 +1606,18 @@ body.is-loading #banner:before {
     font-family: "Monaco", "consolas", monospace;
     white-space: pre-wrap;
     word-break: break-all;
+}
+
+.ng-dropdown-panel {
+  opacity: 1 !important;
+  /* height: 82%; */
+  top: 101% !important;
+  left: 0em !important;
+  width: 69em !important;
+  height: 18em !important;
+  /* margin-top: -9em; */
+  /* margin-left: -15em; */
+  border: 1px solid #666;
+  /* background-color: #b9faac; */
+  /* position: fixed !important;*/
 }

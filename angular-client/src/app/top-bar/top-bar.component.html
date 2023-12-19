@@ -4,8 +4,8 @@
 						<header>
 							<h1>Geo Resolver</h1>
 							<p>A Geolocation resolver API service<br />
-							designed for <a href="https://gollgi.com/">Gollgi.com</a> and released in 2020 as an 
-							<a href="https://github.com/Hoffmanation/spring-boot-geolocation" >open source</a> project</p>
+							designed for <a href="https://play.google.com/store/apps/details?id=com.gollgi.android" target="_blank" >Gollgi.com</a> and released in 2020 as an 
+							<a href="https://github.com/Hoffmanation/spring-boot-geolocation" target="_blank" >open source</a> project</p>
 						</header>
 						<a class="more" href="#box" (click)="scrollTo(scrolToFirstBox)">Learn More</a>
 					</div>
@@ -28,7 +28,7 @@
 								<div class="inner">
 									<h3>Test Geo Resolver API</h3>
 									<p>Search Address:</p>
-									<app-address-search  [whenInputEmpty]="emptyInput" id="addressSearch" type="address" (onChange)="onSuggestion($event)" (onClear)="onClear($event)"></app-address-search>
+									<app-address-search  [city]="selectedCity" [whenInputEmpty]="emptyInput" id="addressSearch" type="address" (cityChange)="cityChange($event)"></app-address-search>
 									<pre class="geoUrl"> https://oren-hoffman.com/geo-resolver/secured/get-location?search={{endpointSearchAddress}}</pre>
 									
 									<br>

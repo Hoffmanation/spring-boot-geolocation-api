@@ -23,10 +23,11 @@ export class TopBarComponent implements OnInit {
 	private scrollContainer: any;
 	@ViewChild('scrolToFirstBox') scrolToFirstBox: ElementRef;
 	@ViewChild('scrolToSecondBox') scrolToSecondBox: ElementRef;
+	public selectedCity:string ;
 
 	constructor(public resolverService: ResolverService, public addressBarComp: AddressSearchComponent, private spinner: NgxSpinnerService) {
 		console.log('%c Geo-Resolver Version: ' + environment.version, 'color: #70c7be; font-size: 24px;');
-	 }
+	}
 
 	ngOnInit() {
 	}
@@ -72,12 +73,12 @@ export class TopBarComponent implements OnInit {
 	}
 
 
-	onSuggestion(event: any) {
-		this.search = event.suggestion.value
+	cityChange(event: any) {
+		this.search = event ;
 		this.endpointSearchAddress = this.search.replace(/ /g, '');
 		this.emptyInput = false;
+		this.testResolver() ;
 	}
-
 
 	onClear(event: any) {
 		this.search = "";

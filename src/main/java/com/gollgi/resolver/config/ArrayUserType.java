@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * This custom class defining a postgressSQL array that can be persist by JPA.
  * For use in entity define @type(type = "name.of.package.ArrayUserType")
  * annotation above String[].
+ *  @author Hoffman
  */
 @Configuration
 public class ArrayUserType implements UserType {

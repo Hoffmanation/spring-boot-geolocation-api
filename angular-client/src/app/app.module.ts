@@ -8,6 +8,7 @@ import { AddressSearchComponent } from './address-search/address-search.componen
 import { HttpClientModule } from '@angular/common/http';
 import {PrettyJsonModule} from 'angular2-prettyjson';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FormsModule,
     HttpClientModule,
     PrettyJsonModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgSelectModule
     
   ],
   providers: [ResolverService,AddressSearchComponent],
