@@ -9,8 +9,12 @@ import {
   SimpleChanges,
   ViewChild
 } from "@angular/core";
-import * as places from "places.js";
-import { TopBarComponent } from "../top-bar/top-bar.component";
+
+import * as citiesData from '../../app/cities_and_countries.json';
+
+interface cites {
+  City: string,
+}
 
 @Component({
   selector: 'app-address-search',
@@ -20,54 +24,48 @@ import { TopBarComponent } from "../top-bar/top-bar.component";
 
 
 export class AddressSearchComponent implements AfterViewInit, OnDestroy, OnChanges {
-  private instance = null;
-  public shouldAppendError : boolean = false;
-
-  @ViewChild("input") input;
-  @Output() onChange?= new EventEmitter();
-  @Output() onClear?= new EventEmitter();
+  public selectedCity = null;
+  public shouldAppendError: boolean = false;
+  public endpointSearchAddress: string;
+  public cities: string[];
 
 
+//Declare the property
+@Output() cityChange:EventEmitter<string> =new EventEmitter<string>();
+@Input("city") city:string ;
+@Input() whenInputEmpty: boolean;
 
-  @Input() type: string;
 
-  @Input()
-  whenInputEmpty: boolean ;
+  constructor() {
+    const citiesDataJson = JSON.stringify(citiesData);
+    const citiesDataArray = JSON.parse(citiesDataJson);
+    this.cities = citiesDataArray;
+    console.log(this.cities);
 
-
-  ngAfterViewInit() {
-    this.instance = places({
-      appId: "pl6M28ZJIIFM",
-      apiKey: "6e4b81520a26ea955c5b3b831ba84955",
-      container: this.input.nativeElement,
-      type: this.type
-    });
-
-    this.instance.on("change", e => {
-      this.onChange.emit(e);
-    });
-
-    this.instance.on("clear", e => {
-      this.onClear.emit(e);
-    });
   }
 
-  addErrorClass(){
-    this.whenInputEmpty = true ;
+  ngAfterViewInit() {
+  }
+
+  addErrorClass() {
+    this.whenInputEmpty = true;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.type && this.instance) {
-      this.instance.configure({
-        type: changes.type.currentValue,
-      });
+    if (changes.type) {
+      console.log(changes)
     }
+  }
+
+  cityChangeHandler(event) {
+    console.log(event);
+    this.cityChange.emit(event);
   }
 
 
   ngOnDestroy() {
-    this.instance.removeAllListeners("change");
-    this.instance.removeAllListeners("clear");
-    this.instance.destroy();
+    this.selectedCity.removeAllListeners("change");
+    this.selectedCity.removeAllListeners("clear");
+    this.selectedCity.destroy();
   }
 }

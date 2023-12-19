@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			 <version>1.4.177</version>
+			<version>1.4.177</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -56,7 +56,6 @@
 		</dependency>
 
 
-
 		<!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -80,12 +79,12 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-core -->
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-core -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-core</artifactId>
 		</dependency>
-
 
 
 		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
@@ -101,14 +100,15 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		
-				<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j -->
+
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j</artifactId>
 			<version>1.2.2.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -121,14 +121,13 @@
 		</dependency>
 
 
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -142,12 +141,16 @@
 	<profiles>
 
 		<!-- Mvn profiles for angular front end build : 
-				1.'build-prod' profile for production build - This profile will: 
+		
+				1.'build-prod' profile for production build (<plugin> command exe) - This
+		profile will: 
 					a.install local node and npm engines in the angular-client folder 
 					b.invoke npm install 
 					c.invoke npm build for production as 'ng build -/-prod' 
 					d.install generated scrambled file to '../src/main/resources/static' 
-				2.'build-dev' profile for development build - This profile will: 
+					
+				2.'build-dev' profile for development build (<plugin> exe the 'dev-build.bat'
+		file) - This profile will: 
 					b.invoke npm install 
 					c.invoke npm build for development as 'ng build' 
 					d.install generated unscrambled file to '../src/main/resources/static' 
@@ -218,7 +221,6 @@
 		</profile>
 
 
-
 		<!-- Development Build -->
 		<profile>
 			<id>build-dev</id>
@@ -227,28 +229,28 @@
 			</activation>
 			<build>
 				<finalName>geo-resolver</finalName>
-					<plugins>
-						<plugin>
-							<artifactId>exec-maven-plugin</artifactId>
-							<groupId>org.codehaus.mojo</groupId>
-							<version>1.3.2</version>
-							<executions>
-								<execution>
-									<id>Build angular using ng</id>
-									<phase>compile</phase>
-									<goals>
-										<goal>exec</goal>
-									</goals>
-									<configuration>
-										<executable>${basedir}\dev-build.bat</executable>
-										<arguments>
-											<argument>${basedir}\angular-client</argument>
-										</arguments>
-									</configuration>
-								</execution>
-							</executions>
-						</plugin>
-					</plugins>
+				<plugins>
+					<plugin>
+						<artifactId>exec-maven-plugin</artifactId>
+						<groupId>org.codehaus.mojo</groupId>
+						<version>1.3.2</version>
+						<executions>
+							<execution>
+								<id>Build angular using ng</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${basedir}\dev-build.bat</executable>
+									<arguments>
+										<argument>${basedir}\angular-client</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 

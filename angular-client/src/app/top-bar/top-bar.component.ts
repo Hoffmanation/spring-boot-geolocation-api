@@ -3,6 +3,7 @@ import { ResolverService } from '../service/resolver-service.service';
 import { GeoLocation } from '../model/GeoLocation';
 import { AddressSearchComponent } from '../address-search/address-search.component';
 import { NgxSpinnerService } from "ngx-spinner";
+import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-top-bar',
@@ -22,8 +23,11 @@ export class TopBarComponent implements OnInit {
 	private scrollContainer: any;
 	@ViewChild('scrolToFirstBox') scrolToFirstBox: ElementRef;
 	@ViewChild('scrolToSecondBox') scrolToSecondBox: ElementRef;
+	public selectedCity:string ;
 
-	constructor(public resolverService: ResolverService, public addressBarComp: AddressSearchComponent, private spinner: NgxSpinnerService) { }
+	constructor(public resolverService: ResolverService, public addressBarComp: AddressSearchComponent, private spinner: NgxSpinnerService) {
+		console.log('%c Geo-Resolver Version: ' + environment.version, 'color: #70c7be; font-size: 24px;');
+	}
 
 	ngOnInit() {
 	}
@@ -69,12 +73,12 @@ export class TopBarComponent implements OnInit {
 	}
 
 
-	onSuggestion(event: any) {
-		this.search = event.suggestion.value
+	cityChange(event: any) {
+		this.search = event ;
 		this.endpointSearchAddress = this.search.replace(/ /g, '');
 		this.emptyInput = false;
+		this.testResolver() ;
 	}
-
 
 	onClear(event: any) {
 		this.search = "";

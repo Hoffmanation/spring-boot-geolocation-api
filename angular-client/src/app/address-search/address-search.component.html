@@ -1,2 +1,15 @@
-<input [ngClass]="{'emptyInput': whenInputEmpty }" #input type="text" class="form-control" placeholder="Search for address" />
 
+
+<!--Using items input-->
+<ng-select 
+        class="citySelect"
+        placeholder="Search a city" 
+        [items]="cities" 
+        bindLabel="name" 
+        bindValue="id" 
+        (change)="cityChangeHandler($event)"
+        [virtualScroll]="true"
+        [(ngModel)]="selectedCity"
+        [ngClass]="{'emptyInput': whenInputEmpty }" 
+        >
+</ng-select>

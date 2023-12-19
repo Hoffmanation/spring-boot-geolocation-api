@@ -20,7 +20,7 @@ import com.gollgi.resolver.service.GeoLocationManager;
 /**
  *A collection of  Rest API endpoints which will resolve a {@link GeoLocation} by a given attributes
  * 
- * @author Haffman
+ * @author Hoffman
  *
  */
 @RestController

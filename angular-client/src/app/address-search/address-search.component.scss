@@ -44,3 +44,36 @@ input[type="button"], button, .button {
   text-decoration: none;
   white-space: nowrap;
 }
+
+.citySelect{
+  display: block;
+  width: 100%;
+  height: calc(2.5em + 1.75rem + -10px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  /* line-height: 0.5; */
+  color: #fa0909;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  /* margin-top: 13px; */
+  margin-bottom: 21px;
+} 
+
+
+.ng-dropdown-panel {
+  opacity: 1 !important;
+  /* height: 82%; */
+  top: 101% !important;
+  left: 0em !important;
+  width: 69em !important;
+  height: 18em !important;
+  /* margin-top: -9em; */
+  /* margin-left: -15em; */
+  border: 1px solid #666;
+  /* background-color: #b9faac; */
+  /* position: fixed !important;*/ 
+}

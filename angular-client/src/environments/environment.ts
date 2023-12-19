@@ -7,5 +7,6 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost',
   port: '8080',
-  endpoints: { getLocation: '/secured/get-location'}
+  endpoints: { getLocation: '/geo-resolver/secured/get-location'},
+  version : 1.3
 };

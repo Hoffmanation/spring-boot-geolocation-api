@@ -1,17 +1,15 @@
 package com.gollgi.resolver.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gollgi.resolver.app.objects.GeoApiResolver;
@@ -53,9 +51,16 @@ public class GeoLocation implements Serializable {
 	@Column(name = "longitude")
 	private String longitude;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "resolver")
-	private GeoApiResolver resolver;
+	@Column(name = "display_name")
+	private String displayName;
+
+	@Column(name = "ISO")
+	private String ISO;
+
+	@Column(name = "resolvers")
+	@Enumerated
+	@ElementCollection(targetClass = GeoApiResolver.class)
+	private List<GeoApiResolver> resolvers;
 
 	private String address;
 
@@ -67,33 +72,30 @@ public class GeoLocation implements Serializable {
 		this.address = address;
 	}
 
-
-
 	public GeoLocation() {
 
 	}
 
-	public GeoLocation(Integer timeZone, String countryCode, String countryName, String regeon, String city,
-			String postalCode, String latitude, String longitude , GeoApiResolver resolver) {
+	public GeoLocation(Integer timeZone, String countryCode, String countryName, String region, String city,
+			String postalCode, String latitude, String longitude, String displayName, List<GeoApiResolver> resolvers,
+			String address, String ISO) {
 		super();
 		this.timeZone = timeZone;
 		this.countryCode = countryCode;
 		this.countryName = countryName;
-		this.region = regeon;
+		this.region = region;
 		this.city = city;
 		this.postalCode = postalCode;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.resolver= resolver ;
+		this.resolvers = resolvers;
+		this.displayName = displayName;
+		this.address = address;
+		this.ISO = ISO;
 	}
 
-
-	public UUID getgeoLocationId() {
-		return geoLocationId;
-	}
-
-	public void setgeoLocationId(UUID geoLocationId) {
-		this.geoLocationId = geoLocationId;
+	public GeoLocation(List<GeoApiResolver> resolvers) {
+		this.resolvers = resolvers ;
 	}
 
 	public Integer getTimeZone() {
@@ -119,7 +121,6 @@ public class GeoLocation implements Serializable {
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
-
 
 	public String getRegion() {
 		return region;
@@ -161,37 +162,65 @@ public class GeoLocation implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public GeoApiResolver getResolver() {
-		return resolver;
+	public List<GeoApiResolver> getResolvers() {
+		return resolvers;
 	}
 
-	public void setResolver(GeoApiResolver resolver) {
-		this.resolver = resolver;
+	public void setResolver(List<GeoApiResolver> resolvers) {
+		this.resolvers = resolvers;
+	}
+
+	public UUID getGeoLocationId() {
+		return geoLocationId;
+	}
+
+	public void setGeoLocationId(UUID geoLocationId) {
+		this.geoLocationId = geoLocationId;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public void setResolvers(List<GeoApiResolver> resolvers) {
+		this.resolvers = resolvers;
+	}
+
+	public String getISO() {
+		return ISO;
+	}
+
+	public void setISO(String iSO) {
+		ISO = iSO;
 	}
 
 	@JsonIgnore
 	public boolean isEmpty() {
-		if (null == this || null == this.latitude ||  null == this.longitude) {
+		if (null == this || null == this.latitude || null == this.longitude) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@JsonIgnore
 	public boolean isPresentable() {
-		if (null != this && null != this.latitude && null != this.longitude && null != this.countryName && null!=this.city && null!=this.region) {
+		if (null != this && null != this.latitude && null != this.longitude && null != this.countryName
+				&& null != this.city && null != this.region) {
 			return true;
 		}
 		return false;
 	}
-	
-
 
 	@Override
 	public String toString() {
-		return "geoLocation [geoLocationId=" + geoLocationId + ", timeZone=" + timeZone + ", countryCode=" + countryCode + ", countryName=" + countryName + ", regeon=" + region + ", city=" + city + ", postalCode=" + postalCode + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", resolver=" + resolver.toString() + "]";
+		return "GeoLocation [geoLocationId=" + geoLocationId + ", timeZone=" + timeZone + ", countryCode=" + countryCode
+				+ ", countryName=" + countryName + ", region=" + region + ", city=" + city + ", postalCode="
+				+ postalCode + ", latitude=" + latitude + ", longitude=" + longitude + ", displayName=" + displayName
+				+ ", ISO=" + ISO + ", resolvers=" + resolvers + ", address=" + address + "]";
 	}
-
 
 }

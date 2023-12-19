@@ -36,8 +36,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
      * (What the user will see when he will access the application URL)
      */
 	  @Override
-	    public void addViewControllers( ViewControllerRegistry registry ) {
-	        registry.addViewController( "/" ).setViewName( "forward:/index.html" );
-	        registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
+		public void addViewControllers(ViewControllerRegistry registry) {
+			registry.addViewController("/").setViewName("forward:/index.html");
+			registry.addViewController("/geo-resolver").setViewName("forward:/index.html");
+			registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
 	    }
 }

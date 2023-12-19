@@ -19,7 +19,7 @@ export class GeoLocation {
 
 	public longitude: string;
 
-	public resolver: string;
+	public resolver: string [];
 
 	public companyId: string;
 
