@@ -1,7 +1,8 @@
 # Geo Resolver Application
-Java Spring-Boot 2 application for Geolocation API services, originally designed for Gollgi.com and released in 2020 as an open source project.  
-On API's invocation Geo-Resolver engine will retrieve the richest location results from a list of Geolocation providers.
-Demo can be found in this link https://oren-hoffman.com/geo-resolver/
+Java Spring-Boot 2 application for Geolocation Resolver API services<br>
+Originally designed for [Gollgi.com](https://play.google.com/store/apps/details?id=com.gollgi.android&pli=1) and released in 2021 as an open source project.<br> 
+On API's invocation Geo-Resolver engine will retrieve the richest location results from a list of Geolocation providers.<br>
+Demo can be found in the following link https://oren-hoffman.com/geo-resolver/
 
 ## Geo Resolver API REST Endpoints
 - '/secured/get-location-by-resolver/{address}/{resolver}' 
@@ -24,7 +25,8 @@ Demo can be found in this link https://oren-hoffman.com/geo-resolver/
 
 # Module Major Dependencies
 - Spring-Boot V2.3.1.RELEASE
-- Spring-Data V2.0.0.RELEASE
+- Spring-Data V2.3.1.RELEASE
+- H2 DB 1.3.175
 
 # Server Specifications
 - Java Maven project
@@ -34,7 +36,7 @@ Demo can be found in this link https://oren-hoffman.com/geo-resolver/
 
 
 # Client Specifications
-- Angular V5
+- Angular V6
 - Bootstrap 4
 
 # Environment
