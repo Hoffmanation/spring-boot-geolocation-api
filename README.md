@@ -6,15 +6,10 @@ Demo can be found in the following link https://oren-hoffman.com/geo-resolver/
 
 ## Geo Resolver API REST Endpoints
 - '/secured/get-location-by-resolver/{address}/{resolver}' 
-    - This endpoint will produce Geolocation object by a given address and provider's name
-        
-    
-- '/secured/get-location-by-resolver/{address}/{resolver}' 
-    - This endpoint will produce Geolocation object by a given address and will produce the richest results from a list of Geolocation providers 
-      
+    - This endpoint will produce Geolocation object by a given address and provider's name    
     
 - '/secured/get-resolver' 
-    - This endpoint will produce a list of all available Geolocation providers 
+    - This endpoint will produce Geolocation object by a given address and will produce the richest results from a list of Geolocation providers 
       
 
 
